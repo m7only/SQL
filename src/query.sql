@@ -1,3 +1,4 @@
+-- Задание 1
 INSERT INTO employee(first_name, last_name, gender, age) VALUES( 'Вася', 'Васий', 'муж', 159);
 INSERT INTO employee(first_name, last_name, gender, age) VALUES('Мария', 'Магдалина', 'жен', 159);
 INSERT INTO employee(first_name, last_name, gender, age) VALUES('Жанна', 'д''Арк', 'жен',19);
@@ -10,8 +11,12 @@ SELECT * FROM employee ORDER BY last_name DESC;
 SELECT * FROM employee WHERE first_name LIKE '____%';
 SELECT * FROM employee WHERE LENGTH(first_name) > 4;
 
+-- Задание 2
 UPDATE employee SET first_name='Павел' WHERE id = 3;
 UPDATE employee SET first_name='Владимир' WHERE id = 7;
 SELECT first_name AS Имя, SUM(age) as Суммарный_возраст FROM employee GROUP BY first_name;
+-- Выведите имя и самый юный возраст, соответствующий имени. Не совсем понял, самый минимальный среди всех или миимальный для каждого имени, сделал оба варианта
 SELECT first_name AS Имя, age AS Минимальный_возраст FROM employee WHERE age = (SELECT MIN(age) FROM employee);
+SELECT first_name AS Имя, MIN(age) AS Минимальный_возраст FROM employee GROUP BY Имя;
+
 SELECT first_name, MAX(age) AS max_age FROM employee GROUP BY first_name HAVING COUNT(first_name) > 1 ORDER BY max_age ASC;
